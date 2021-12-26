@@ -44,15 +44,25 @@ def registration():
         break
 
 
-def password_ckecker():
-    password = input('Введите пароль: ')
-    pass
+def password_checker(text_file):
+    for line in text_file:
+        if 'Password' in line:
+            string_with_password = line
+    for i in range(3):
+        password = input('Введите пароль: ')
+        if password in string_with_password:
+            print('авторизация успешна!')
+        if password not in string_with_password and i != 2:
+            print('Пароль неверен, Введите другой пароль или пройдите регестрацию, осталось попыток: ' + str(2-i))
+
+
+
 
 print('Авторизация пользователя')
 username = input('Введите имя пользователя: ')
 try:
-    open(username + '.txt', 'r')
-    password_ckecker()
+    text_file = open(username + '.txt', 'r')
+    password_checker(text_file)
 except FileNotFoundError:
     print('Ваш логин не найден, пройдите регистрацию')
     registration()
