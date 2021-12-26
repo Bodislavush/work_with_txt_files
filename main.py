@@ -56,23 +56,16 @@ def password_checker(text_file):
             print('Пароль неверен, Введите другой пароль или пройдите регестрацию, осталось попыток: ' + str(2-i))
 
 
+def main():
+    print('Авторизация пользователя')
+    username = input('Введите имя пользователя: ')
+    try:
+        text_file = open(username + '.txt', 'r')
+        password_checker(text_file)
+    except FileNotFoundError:
+        print('Ваш логин не найден, пройдите регистрацию')
+        registration()
 
 
-print('Авторизация пользователя')
-username = input('Введите имя пользователя: ')
-try:
-    text_file = open(username + '.txt', 'r')
-    password_checker(text_file)
-except FileNotFoundError:
-    print('Ваш логин не найден, пройдите регистрацию')
-    registration()
-
-
-
-
-
-
-
-
-
+main()
 
